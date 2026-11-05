@@ -7,7 +7,11 @@ from google import genai
 from google.genai import types
 from PIL import Image
 
-client = genai.Client()
+import os
+import streamlit as st
+
+api_key = st.secrets.get("GEMINI_API_KEY") or os.environ.get("GEMINI_API_KEY")
+client = genai.Client(api_key=api_key)
 STATE_FILE = Path("agency_state.json")
 
 DEFAULT_BRAND_VAULT = {
